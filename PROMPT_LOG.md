@@ -4,7 +4,7 @@
 **Request:** Run the game.
 **Action:** Opened `index.html` in the default browser.
 
-## Prompt 2: "there's no UI, its just a plain white"
+## Prompt 2: "there's no CSS"
 **Request:** The page rendered as unstyled plain HTML — all screens visible at once, no CSS or game canvas.
 **Issue:** `index.html` referenced files in a `src/` subdirectory (`src/styles.css`, `src/engine.js`, etc.) but all files were in the root directory.
 **Fix:** Updated all `<link>` and `<script>` paths in `index.html` to point to root-level files (`styles.css`, `engine.js`, `levels.js`, `renderer.js`, `game.js`).
@@ -30,3 +30,11 @@
 - Added instant braking: velocity halves when no movement keys are pressed
 - Added deadzone: velocities below 0.15 snap to zero (no micro-drift)
 - Added speed cap (`MAX_SPEED = 4.5`) to prevent runaway velocity
+
+## Prompt 6: "controls are still flowy - make it more friction, lower acceleration"
+**Request:** Characters still felt too floaty/slidey despite previous tuning.
+**Fix (in `engine.js`):**
+- `FRICTION`: 0.68 → 0.45 (much heavier drag per frame)
+- Acceleration multiplier: 0.7 → 0.5 (gentler ramp-up)
+- Brake on release: 0.5 → 0.3 (nearly instant stop when keys released)
+- `MAX_SPEED`: 4.5 → 3.5 (lower top speed)

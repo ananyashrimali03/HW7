@@ -4,9 +4,9 @@ const TILE = 32;
 const COLS = 30;
 const ROWS = 20;
 const GRAVITY = 0.45;
-const FRICTION = 0.68;
+const FRICTION = 0.45;
 const MAX_FALL = 10;
-const MAX_SPEED = 4.5;
+const MAX_SPEED = 3.5;
 
 // ── Input Manager ──
 class InputManager {
@@ -84,16 +84,16 @@ class Player extends Entity {
     }
 
     if (moveLeft) {
-      this.vx -= this.speed * 0.7;
+      this.vx -= this.speed * 0.5;
       this.facingRight = false;
     }
     if (moveRight) {
-      this.vx += this.speed * 0.7;
+      this.vx += this.speed * 0.5;
       this.facingRight = true;
     }
 
     if (!moveLeft && !moveRight) {
-      this.vx *= 0.5;
+      this.vx *= 0.3;
     }
 
     if (jump && this.onGround) {
